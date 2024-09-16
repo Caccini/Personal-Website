@@ -1,0 +1,590 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: #252323; /* Black background for better contrast */
+  perspective: 1500px; /* Add perspective */
+}
+
+#fullpage {
+  position: relative;
+  overflow-y: scroll; /* Enable scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+#fullpage .section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Minimum height to cover full viewport */
+  box-sizing: border-box;
+  transform-style: preserve-3d; /* Ensure 3D effect */
+  position: relative;
+}
+
+.section-content {
+  width: 90%;
+  height: 90%;
+  background: #f1ecea;
+  background-color: #f2f2f2;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out, z-index 0s 0.5s; /* delay z-index change */
+  transform: translateZ(0) scale(1); /* Initial transform to maintain 3D context */
+  z-index: 1;
+  margin: auto; /* Center content */
+}
+
+.typewrite {
+  font-size: 3em;
+}
+.typewrite > .wrap {
+  border-right: 0.08em solid #000;
+}
+
+.section-content.active {
+  transform: translateZ(0) scale(1);
+  z-index: 2;
+}
+
+.section-content.inactive {
+  transform: translateZ(-100px) scale(0.8);
+  z-index: 1;
+}
+
+.section-content.active {
+  transform: translateZ(0) scale(1);
+  z-index: 2; /* Bring the active section to the front */
+}
+
+.section-content.inactive {
+  transform: translateZ(-100px) scale(0.8); /* Adjust scale and translateZ for minimal gap */
+  z-index: 1; /* Send the inactive section to the back */
+}
+
+.section:nth-child(odd) .section-content {
+  background-color: #f2f2f2;
+}
+
+.section:nth-child(even) .section-content {
+  background-color: #f2f2f2;
+}
+
+.fp-section {
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Section 1 */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+  left: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-content span {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: #000;
+}
+
+span a {
+  text-decoration: none; /* Removes the underline */
+  color: black; /* Sets the link color to black */
+}
+
+span a:hover {
+  color: black; /* Ensures the link stays black on hover */
+}
+
+span a:visited {
+  color: black; /* Ensures the link stays black after being visited */
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Specific styles for the second section */
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.left-pane {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d7f25e; /* DFFF52#*/
+  position: relative;
+}
+
+.photo-thumbnail-1 {
+  width: 180px; /* Define the size of the square */
+  height: 180px; /* Define the size of the square */
+  overflow: hidden; /* Ensure the image doesn't overflow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px; /* Optional: to make the corners rounded */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.photo-thumbnail-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container */
+}
+
+.right-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #b2c4fc; /* rgb(158, 174, 255)*/
+  padding: 20px;
+  position: relative;
+}
+
+.eyes {
+  width: 100px;
+  height: 50px;
+  background: url("eyes.png") no-repeat center center; /* Replace with the actual image URL */
+  background-size: contain;
+}
+
+.intro-text {
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: #fff;
+}
+
+.highlight {
+  color: #ff0;
+}
+
+.request-cv {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffec43;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-cv a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Navigation styles */
+.navigation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #b2c4fc;
+  border: 2px solid #000;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.nav-item {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 1em;
+  color: #fff;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-bottom: 20px;
+  transform: rotate(180deg);
+}
+
+.nav-arrow {
+  /* width: 20px; */
+  /* height: 20px; */
+  /* background: url("arrow.png") no-repeat center center; Replace with the actual image URL */
+  /* background-size: contain; */
+}
+
+/* Grid layout for the third section */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-rows: repeat(2, 1fr); /* Two rows */
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.grid-item {
+  background-color: #9bb6f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 20px; /* Add padding inside the grid items */
+  margin: 10px; /* Add margin around the grid items */
+  cursor: pointer;
+  position: relative;
+}
+
+.grid-item:hover .custom-cursor-element {
+  display: block;
+}
+
+/* Specific sizes for grid items to match the example */
+.grid-item:nth-child(1) {
+  grid-column: span 1; /* Span one column */
+  grid-row: span 1; /* Span one row */
+}
+
+.grid-item:nth-child(2) {
+  grid-column: span 1; /* Span one column */
+  grid-row: span 1; /* Span one row */
+}
+
+.grid-item:nth-child(3) {
+  grid-column: span 1; /* Span one column */
+  grid-row: span 1; /* Span one row */
+}
+
+.grid-item:nth-child(4) {
+  grid-column: span 1; /* Span one column */
+  grid-row: span 1; /* Span one row */
+}
+/* Styles for draggable cards */
+.card-container {
+  position: relative;
+  width: 90%; /* new 80%*/
+  height: 90vh;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  position: absolute;
+  transition: box-shadow 0.1s ease;
+  z-index: 1;
+}
+
+.card:active {
+  cursor: grabbing;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.card button {
+  margin: 5px 0;
+  padding: 5px 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: #0056b3;
+}
+
+.card-header {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-button {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* iMessage effect */
+
+.glimpse-card {
+  width: 360px; /* Adjust width as needed */
+  padding: 20px; /* Add padding inside the card */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 10px auto; /* Center the card horizontally */
+  text-align: center;
+  background-color: rgb(158, 174, 255);
+}
+
+.glimpse-card h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1em; /* Adjust font size as needed */
+  color: #dfff52;
+}
+
+.glimpse-card .image-stack {
+  position: relative;
+  width: 100%;
+  height: 160px; /* Adjust height as needed */
+  margin-top: 22px;
+  margin-bottom: 68px; /* Add some space below the image stack */
+  display: flex;
+  justify-content: center;
+}
+
+.glimpse-card .stacked-image {
+  position: absolute;
+  width: 148px; /* Adjust width as needed */
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.glimpse-card .stacked-image:nth-child(1) {
+  transform: rotate(-5deg) translateX(-20px) translateY(-10px);
+  z-index: 5;
+}
+
+.glimpse-card .stacked-image:nth-child(2) {
+  transform: rotate(-2.5deg) translateX(-15px) translateY(-8px);
+  z-index: 4;
+}
+
+.glimpse-card .stacked-image:nth-child(3) {
+  transform: rotate(0deg) translateX(-10px) translateY(-6px);
+  z-index: 3;
+}
+
+.glimpse-card .stacked-image:nth-child(4) {
+  transform: rotate(2.5deg) translateX(-5px) translateY(-4px);
+  z-index: 2;
+}
+
+.glimpse-card .stacked-image:nth-child(5) {
+  transform: rotate(5deg) translateX(0px) translateY(-2px);
+  z-index: 1;
+}
+
+.glimpse-card p {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+/* Story-Card */
+
+.story-card {
+  width: 400px; /* Adjust width as needed */
+  padding: 20px; /* Add padding inside the card */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 10px auto; /* Center the card horizontally */
+  text-align: center;
+  background-color: rgb(158, 174, 255);
+}
+
+.story-card h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1em; /* Adjust font size as needed */
+  color: #dfff52;
+}
+
+.story-card p {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+/* Tune In Card */
+/* Tune-In Card Styles */
+/* Tune-In Card Styles */
+.tune-in-card {
+  background-color: rgb(158, 174, 255); /* Change background color */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items to the start */
+  padding-bottom: 12px;
+  border-radius: 8px; /* Rounded corners for the card */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 360px;
+  height: 220px;
+}
+
+.tune-in-card .card-header {
+  font-size: 24px;
+  color: #dfff52;
+  margin-bottom: 18px; /* Space between header and iframe */
+  text-align: start;
+  margin-top: 10px;
+}
+
+.tune-in-card .spotify-iframe {
+  border-radius: 10px; /* Rounded corners for iframe */
+  border: none;
+  height: auto; /* Adjust height as needed */
+  width: 100%; /* Ensure iframe takes full width */
+  flex-grow: 0; /* Prevent iframe from growing */
+}
+
+iframe {
+  display: block; /* Ensures no extra bottom space */
+}
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .left-pane,
+  .right-pane {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* Adjust to fit two columns */
+    grid-template-rows: repeat(3, 1fr); /* Adjust to fit three rows */
+  }
+
+  .card-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .card {
+    width: 90%;
+    position: relative;
+    margin: 20px auto;
+  }
+
+  .glimpse-card,
+  .story-card,
+  .tune-in-card {
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+
+/* espanol card */
+
+.espanol-card {
+  background-color: rgb(158, 174, 255);
+}
+.espanol-card h2 {
+  font-size: 24px;
+  color: #ce3032;
+}
+
+.espanol-card p {
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+/* travel card */
+.travel-card {
+  background-color: rgb(158, 174, 255);
+}
+
+.travel-card h2 {
+  font-size: 24px;
+  color: #dfff52;
+}
+
+.travel-card p {
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+/* activity-card */
+
+.activity-card {
+  background-color: rgb(158, 174, 255);
+}
+
+.activity-card h2 {
+  font-size: 24px;
+  color: #dfff52;
+}
+
+.activity-card p {
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: justify;
+}
